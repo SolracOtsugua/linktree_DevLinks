@@ -1,0 +1,216 @@
+* {
+  /* representa o seletor universal, serve para todos, o que acontecer aqui acontece em todos*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --strok-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hoover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --strok-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hoover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  /*
+  background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  */
+  /*Propriedade short hand ou atalho*/
+  /*background: color image repeat position/ size */
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+/* Seletor de id é #, toda vez que precisar chamar o container vc usa o # */
+#container {
+  width: 100%;
+  max-width: 588px;
+  /* border: 1px solid white; */
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+/* 
+  margin-right: auto;
+  margin-left: auto;
+  para que a borda esteja centralizada, é necessário que a direita (right) e a esquerda (left) estejam preenchidas logo o lugar que não estará ocupado será o centro
+  */
+/* profile */
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+/* text align só funcionará para elementos do tipo Line, tipo block não é possível */
+#profile img {
+  width: 112px;
+  /* border: 1px solid yellow; */
+  /*display: block;
+  margin: auto; */
+  /* margin:: auto, não funcionará para elementos do tipo Line como o img, é necessário forçar um tipo Block para usar o comando margin auto
+  por isso pode-se usar o comando display: block para forçar a troca do tipo. */
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+  /* border: 1px solid green; */
+}
+
+/* switch */
+#switch {
+  /* border: 1px solid darkmagenta; */
+  position: relative;
+  width: 64px;
+
+  margin: 4px auto;
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+
+  animation: retornar 0.4s;
+}
+
+.light #switch button {
+  /* right: 0;
+  left: initial; */
+  animation: deslizar 0.4s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--strok-color);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* link - lista*/
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* border: 1px solid red; */
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px 24px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--strok-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px);
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: background 0.2s;
+}
+
+/*pseudo-selector*/
+
+ul li a:hover {
+  background: var(--surface-color-hoover);
+  border: 1px solid var(--text-color);
+}
+
+/* social links*/
+#Social-Links {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 24px;
+  /* border: 1px solid pink; */
+}
+
+#Social-Links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+#Social-Links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* media queries */
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* animação */
+@keyframes deslizar {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes retornar {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
